@@ -1,11 +1,11 @@
-import HTTP_STATUSES from "../statuses.js";
+import { HTTP_STATUSES } from "../statuses.js";
 import { favorites } from "../db.js";
 
 export const getFavorites = (req, res) => {
   let foundFavorites = [...favorites];
 
   if (req.query.name) {
-    foundFavorites = foundFavorites.filter((t) => 
+    foundFavorites = foundFavorites.filter((t) =>
       t.name.toLowerCase().includes(req.query.name.toLowerCase())
     );
   }
@@ -55,7 +55,7 @@ export const addFavorite = async (req, res) => {
 
 export const deleteFavorite = async (req, res) => {
   const { id } = req.params;
-  
+
   const foundFavorite = favorites.find((t) => t.id === +id);
 
   if (!foundFavorite) {
