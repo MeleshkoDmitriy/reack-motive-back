@@ -52,10 +52,10 @@ export const deleteFavorite = async (req, res) => {
       .json({ message: "Favorite was not found!" });
   }
 
-  const updatedFavorites = favorites.filter((t) => t.id !== +id);
+  favorites = favorites.filter((t) => t.id !== +id);
 
   res
     .status(HTTP_STATUSES.OK_200)
 
-    .json({ message: "Favorite was removed", favorites: updatedFavorites });
+    .json({ message: "Favorite was removed", favorites });
 };
