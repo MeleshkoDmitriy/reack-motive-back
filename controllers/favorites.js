@@ -5,25 +5,14 @@ export const getFavorites = (req, res) => {
   let foundFavorites = [...favorites];
 
   if (req.query.name) {
-    foundFavorites = foundFavorites.filter((t) =>
-      t.name.toLowerCase().includes(req.query.name.toLowerCase())
+    foundFavorites = foundFavorites.filter((item) =>
+      item.name.toLowerCase().includes(req.query.name.toLowerCase())
     );
   }
 
-  if (favorites.length > 0) {
-    try {
-      res.status(HTTP_STATUSES.OK_200).json(foundFavorites);
-    } catch (error) {
-      res
-        .status(HTTP_STATUSES.INTERNAL_SERVER_ERROR_500)
-        .json({ message: "Something went wrong!", error: error.message });
-    }
-  } else {
-    res
-      .status(HTTP_STATUSES.NOT_FOUND_404)
-      .json({ message: "No favorites found" });
-  }
+  res.status(HTTP_STATUSES.OK_200).json(foundFavorites);
 };
+
 
 export const addFavorite = async (req, res) => {
   try {
