@@ -43,19 +43,20 @@ export const addFavorite = async (req, res) => {
 
 export const deleteFavorite = async (req, res) => {
   const { id } = req.params;
+  console.log("id", id);
+  console.log("favorites", favorites);
 
-  const foundFavorite = favorites.find((t) => t.id === +id);
+  const foundFavoriteIndex = favorites.findIndex((t) => t.id === +id);
 
-  if (!foundFavorite) {
+  if (foundFavoriteIndex === -1) {
     return res
       .status(HTTP_STATUSES.NOT_FOUND_404)
       .json({ message: "Favorite was not found!" });
   }
 
-  favorites = favorites.filter((t) => t.id !== +id);
+  favorites.splice(foundFavoriteIndex, 1);
 
   res
     .status(HTTP_STATUSES.OK_200)
-
     .json({ message: "Favorite was removed", favorites });
 };
