@@ -3,7 +3,6 @@ import cors from "cors";
 import { router } from "./routes/favorites.js";
 
 const PORT = 5000;
-
 const app = express();
 
 app.use(cors());
